@@ -1,18 +1,10 @@
-import { prisma } from "@/lib/prisma";
-
 export default async function Home() {
-  const books = await prisma.book.findMany().then((res) => res);
-
   return (
-    <div>
-      <span>Books</span>
-      <div>
-        {books.map((book) => (
-          <div key={book.id}>
-            <span>{book.title}</span>
-          </div>
-        ))}
-      </div>
+    <div className="flex flex-col gap-8 justify-center items-center h-3/5">
+      <span className="text-6xl font-bold">Booky</span>
+      <span className="text-2xl">
+        Keep all your favorite books & authors in one place!
+      </span>
     </div>
   );
 }
