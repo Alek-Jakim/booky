@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./_components/Navbar";
+import AuthProvider from "@/AuthProvider";
 
 export const metadata: Metadata = {
   title: "Booky",
@@ -13,11 +14,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="h-screen">
-        <Navbar />
-        {children}
-      </body>
-    </html>
+    <AuthProvider>
+      <html lang="en">
+        <body className="h-screen">
+          <Navbar />
+          {children}
+        </body>
+      </html>
+    </AuthProvider>
   );
 }

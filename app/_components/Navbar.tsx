@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { SignInButton, SignOutButton } from "./buttons";
+import { AuthCheck } from "./AuthCheck";
+
 const Navbar = () => {
   return (
     <nav className="bg-green-500 flex p-x-4 p-y-2 text-white justify-between items-center">
@@ -28,6 +31,12 @@ const Navbar = () => {
         <Link href="/books" className="text-2xl hover:underline">
           Books
         </Link>
+        <div className="flex justify-center items-center gap-4">
+          <SignInButton />
+          <AuthCheck>
+            <SignOutButton />
+          </AuthCheck>
+        </div>
       </div>
     </nav>
   );
