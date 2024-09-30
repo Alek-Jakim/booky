@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import Link from "next/link";
 
 const BooksPage = async () => {
   const books = await prisma.book
@@ -8,8 +9,6 @@ const BooksPage = async () => {
       },
     })
     .then((res) => res);
-
-  const authors = await prisma.author.findMany().then((res) => res);
 
   return (
     <div className="flex flex-col justify-center items-center gap-8 h-3/4">
@@ -25,6 +24,11 @@ const BooksPage = async () => {
               {book.title} - {book.author.name}
             </span>
             <span>{book.description}</span>
+            <Link href={`/books/${book.id}`} className="w-full" passHref>
+              <button className="p-2 border border-black bg-green-400 font-bold hover:bg-green-800 hover:text-white w-full">
+                View Details
+              </button>
+            </Link>
           </div>
         ))}
       </div>

@@ -5,14 +5,16 @@ const Navbar = () => {
   return (
     <nav className="bg-green-500 flex p-x-4 p-y-2 text-white justify-between items-center">
       <div className="flex justify-center items-center gap-4 pl-8">
-        <Image
-          src="/images/logo.png"
-          alt="logo"
-          width={125}
-          height={125}
-          priority
-          className="w-[125px] h-[125px]"
-        />
+        <Link href={"/"}>
+          <Image
+            src="/images/logo.png"
+            alt="logo"
+            width={125}
+            height={125}
+            priority
+            className="w-[125px] h-[125px]"
+          />
+        </Link>
         <span className="text-4xl font-bold">Booky</span>
       </div>
 
