@@ -11,8 +11,21 @@ export default async function BookPage({ params: { isbn } }: ICataloguePage) {
   ).then((res) => res.json());
 
   if (!book) {
-    return <div>No book found</div>;
+    return (
+      <div className="flex justify-center items-center h-full">
+        <span className="text-4xl font-bold text-center">
+          Book with ISBN: {isbn} <br /> doesn't exist.
+        </span>
+      </div>
+    );
   }
 
-  return <div>{book.title}</div>;
+  return (
+    <div className="flex flex-col justify-center items-center h-full gap-2">
+      <span className="text-2xl">
+        <span className="font-bold">{book.title}</span> by {book.author}
+      </span>
+      <span className="text-2xl">Num. of pages: {book.pages}</span>
+    </div>
+  );
 }

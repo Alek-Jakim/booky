@@ -1,5 +1,19 @@
+//incremental static regeneration
+export const revalidate = 420;
+
 import { TBook } from "@/types";
 import Link from "next/link";
+
+// Use for data that doesn't change often - generate dynamic routes at build time
+export async function generateStaticParams() {
+  const books = await fetch(`http://localhost:3000/api/content`).then((res) =>
+    res.json()
+  );
+
+  return books.map((book: TBook) => ({
+    isbn: book.ISBN,
+  }));
+}
 
 export default async function CataloguePage() {
   const books = await fetch(`http://localhost:3000/api/content`).then((res) =>
