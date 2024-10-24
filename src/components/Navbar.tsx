@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { SignInButton } from "./buttons";
+import { SignInButton, SignOutButton } from "./buttons";
+import AuthCheck from "./AuthCheck";
 
 export default function Navbar() {
   return (
@@ -20,8 +21,12 @@ export default function Navbar() {
         <Link href="/catalogue" className="hover:underline">
           Catalogue
         </Link>
-        <div>
+        <div className="flex jusfify-center items-center gap-x-4">
           <SignInButton />
+
+          <AuthCheck>
+            <SignOutButton />
+          </AuthCheck>
         </div>
       </div>
     </nav>

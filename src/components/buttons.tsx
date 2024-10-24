@@ -13,17 +13,17 @@ export function SignInButton() {
 
   if (status === "authenticated") {
     return (
-      <div className="flex justify-center items-center gap-x-4">
-        <Link href="/about">
+      <div>
+        <Link href="/dashboard">
           {/* TODO: Redirect to user relevant info */}
           <Image
             src={session.user?.image ?? "/assets/user.png"}
             alt="user"
-            width={32}
-            height={32}
+            width={64}
+            height={64}
+            className="rounded-full border border-2 border-white"
           />
         </Link>
-        <SignOutButton />
       </div>
     );
   }

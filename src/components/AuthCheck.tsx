@@ -9,7 +9,7 @@ export default function AuthCheck({ children }: TProps) {
 
   if (status === "authenticated") {
     return <>{children}</>;
+  } else {
+    return <></>;
   }
-
-  return <>{children}</>;
 }
