@@ -30,12 +30,12 @@ export default async function CataloguePage() {
         <h1 className="text-3xl font-bold">Our Book Catalogue</h1>
       </div>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-5 gap-x-8 gap-y-12">
         {books.map((book: TBook) => {
           return (
             <div
               key={book.ISBN}
-              className="flex flex-col justify-center items-center gap-x-2 gap-y-8  border border-2 p-2 border-black rounded-xl cursor-pointer"
+              className="flex flex-col justify-center items-center gap-x-2 gap-y-8  border border-2 p-2 border-black rounded-xl"
             >
               <span className="text-lg font-bold">{book.title}</span>
               <span>Written by {book.author}</span>
