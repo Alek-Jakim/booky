@@ -1,14 +1,28 @@
-import { TBook } from "@/types";
+import { getStoryblokApi } from "@storyblok/react";
+
 interface ICataloguePage {
   params: {
     isbn: string;
   };
 }
 
+const fetchBook = async (isbn: string) => {
+  // TODO: check why you're getting a runtime error
+  const client = getStoryblokApi();
+
+  if (!client) {
+    throw new Error("Storyblok API client not initialized on the server.");
+  }
+
+  const response = await client.getStory(`catalogue/${isbn}`, {
+    version: "draft",
+  });
+
+  return response.data.story.content;
+};
+
 export default async function BookPage({ params: { isbn } }: ICataloguePage) {
-  const { book } = await fetch(
-    `http://localhost:3000/api/content/${isbn}`
-  ).then((res) => res.json());
+  const book = await fetchBook(isbn);
 
   if (!book) {
     return (

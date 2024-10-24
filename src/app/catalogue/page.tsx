@@ -1,26 +1,38 @@
 //incremental static regeneration
 export const revalidate = 420;
 
-import { TBook } from "@/types";
+import { getStoryblokApi } from "@storyblok/react";
 import Link from "next/link";
 
 // Use for data that doesn't change often - generate dynamic routes at build time
 export async function generateStaticParams() {
-  const books = await fetch(`http://localhost:3000/api/content`).then((res) =>
-    res.json()
-  );
+  const catalogue = await fetchCatalogue();
 
-  return books.map((book: TBook) => ({
-    isbn: book.ISBN,
+  return catalogue.map((book) => ({
+    isbn: book.isbn,
   }));
 }
 
-export default async function CataloguePage() {
-  const books = await fetch(`http://localhost:3000/api/content`).then((res) =>
-    res.json()
-  );
+const fetchCatalogue = async () => {
+  // TODO: check why you're getting a runtime error
+  const client = getStoryblokApi();
 
-  if (!books || !books.length) {
+  if (!client) {
+    throw new Error("Storyblok API client not initialized on the server.");
+  }
+
+  const response = await client.getStories({
+    content_type: "book",
+    version: "draft",
+  });
+
+  return response.data.stories.map((story) => story.content);
+};
+
+export default async function CataloguePage() {
+  const catalogue = await fetchCatalogue();
+
+  if (!catalogue || !catalogue.length) {
     return <>No books were found...</>;
   }
 
@@ -31,16 +43,16 @@ export default async function CataloguePage() {
       </div>
 
       <div className="grid grid-cols-5 gap-x-8 gap-y-12">
-        {books.map((book: TBook) => {
+        {catalogue.map((book) => {
           return (
             <div
-              key={book.ISBN}
+              key={book._uid}
               className="flex flex-col justify-center items-center gap-x-2 gap-y-8  border border-2 p-2 border-black rounded-xl"
             >
               <span className="text-lg font-bold">{book.title}</span>
               <span>Written by {book.author}</span>
               <Link
-                href={`/catalogue/${book.ISBN}`}
+                href={`/catalogue/${book.isbn}`}
                 className="w-full text-xl font-bold hover:bg-black hover:text-white text-center p-2 rounded-xl border border-2 border-black"
               >
                 View Details
