@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SignInButton } from "./buttons";
 
 export default function Navbar() {
   return (
@@ -19,6 +20,9 @@ export default function Navbar() {
         <Link href="/catalogue" className="hover:underline">
           Catalogue
         </Link>
+        <div>
+          <SignInButton />
+        </div>
       </div>
     </nav>
   );

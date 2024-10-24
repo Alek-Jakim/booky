@@ -9,3 +9,7 @@ export type TBook = {
   language: string;
   category: string;
 };
+
+export type TProps = {
+  children: React.ReactNode;
+};
