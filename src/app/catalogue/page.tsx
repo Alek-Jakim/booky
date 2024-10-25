@@ -1,5 +1,6 @@
 //incremental static regeneration
-export const revalidate = 420;
+// export const revalidate = 420;
+export const dynamic = "force-dynamic";
 
 import StoryblokStory from "@storyblok/react/story";
 import { storyBookClient } from "../layout";
@@ -39,10 +40,12 @@ export default async function CataloguePage() {
         <h1 className="text-3xl font-bold">Our Book Catalogue</h1>
       </div>
 
-      <div className="grid grid-cols-5 gap-x-8 gap-y-12">
-        {catalogue.map((story) => {
-          return <StoryblokStory story={story} />;
-        })}
+      <div className="flex justify-center items-center">
+        <div className="grid grid-cols-5 justify-center items-between gap-x-8 gap-y-12">
+          {catalogue.map((story) => {
+            return <StoryblokStory story={story} key={story.id} />;
+          })}
+        </div>
       </div>
     </div>
   );
