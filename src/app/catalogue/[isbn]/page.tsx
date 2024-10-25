@@ -1,5 +1,4 @@
-import { getStoryblokApi } from "@storyblok/react";
-
+import { storyBookClient } from "../../layout";
 interface ICataloguePage {
   params: {
     isbn: string;
@@ -7,14 +6,11 @@ interface ICataloguePage {
 }
 
 const fetchBook = async (isbn: string) => {
-  // TODO: check why you're getting a runtime error
-  const client = getStoryblokApi();
-
-  if (!client) {
+  if (!storyBookClient) {
     throw new Error("Storyblok API client not initialized on the server.");
   }
 
-  const response = await client.getStory(`catalogue/${isbn}`, {
+  const response = await storyBookClient.getStory(`catalogue/${isbn}`, {
     version: "draft",
   });
 

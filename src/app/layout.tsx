@@ -3,7 +3,11 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import AuthProvider from "@/components/AuthProvider";
 import { StoryblokProvider } from "@/components/StoryblokProvider";
-import { storyblokInit, apiPlugin } from "@storyblok/react";
+import {
+  storyblokInit,
+  apiPlugin,
+  getStoryblokApi,
+} from "@storyblok/react/rsc";
 
 export const metadata: Metadata = {
   title: "Booky",
@@ -14,6 +18,9 @@ storyblokInit({
   accessToken: process.env.STORYBLOK_TOKEN,
   use: [apiPlugin],
 });
+
+// Initialize it once here - otherwise suffer endless runtime errors
+export const storyBookClient = getStoryblokApi();
 
 export default function RootLayout({
   children,

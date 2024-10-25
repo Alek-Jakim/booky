@@ -11,7 +11,7 @@ export default function Navbar() {
         </Link>
       </div>
 
-      <div className="flex justify-between items-center gap-8 mr-12 text-xl w-1/4">
+      <div className="flex justify-between items-center gap-8 mr-12 text-xl w-1/3">
         <Link href="/" className="hover:underline">
           Home
         </Link>

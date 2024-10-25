@@ -2,10 +2,10 @@
 
 import { PropsWithChildren } from "react";
 import { storyblokInit } from "@storyblok/react/rsc";
-import BookCatalogue from "./BookCatalogue";
+import Book from "./Book";
 
 storyblokInit({
-  components: { "book-catalogue": BookCatalogue }, // needs to be refactored
+  components: { book: Book }, // needs to be refactored
   enableFallbackComponent: true,
 });
 
