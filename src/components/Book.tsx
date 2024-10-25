@@ -1,10 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-function Book(params: any) {
+async function Book(params: any) {
   const { blok: book } = params;
-
-  console.log("BOOOOK", book);
 
   return (
     <div

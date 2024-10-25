@@ -4,7 +4,9 @@ export const dynamic = "force-dynamic";
 
 import StoryblokStory from "@storyblok/react/story";
 import { storyBookClient } from "../layout";
-
+// import { prisma } from "../../../lib/prisma";
+// import { getServerSession } from "next-auth";
+// import { authOptions } from "../api/auth/[...nextauth]/route";
 // Use for data that doesn't change often - generate dynamic routes at build time
 export async function generateStaticParams() {
   const catalogue = await fetchCatalogue();
@@ -29,6 +31,12 @@ const fetchCatalogue = async () => {
 
 export default async function CataloguePage() {
   const catalogue = await fetchCatalogue();
+
+  /*
+  
+  Refactor the prisma models, figure out the order of creating new rows.
+  
+  */
 
   if (!catalogue || !catalogue.length) {
     return <>No books were found...</>;

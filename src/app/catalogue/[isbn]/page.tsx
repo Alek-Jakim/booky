@@ -1,5 +1,8 @@
 import { storyBookClient } from "../../layout";
 import Image from "next/image";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { prisma } from "../../../../lib/prisma";
 
 interface ICataloguePage {
   params: {
@@ -18,6 +21,14 @@ const fetchBook = async (isbn: string) => {
 
   return response.data.story.content;
 };
+
+async function addBookToCart(book: any) {
+  const session = await getServerSession(authOptions);
+
+  if (!session) return;
+
+  console.log("session exists");
+}
 
 export default async function BookPage({ params: { isbn } }: ICataloguePage) {
   const book = await fetchBook(isbn);

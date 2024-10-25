@@ -8,6 +8,7 @@ import {
   apiPlugin,
   getStoryblokApi,
 } from "@storyblok/react/rsc";
+import ShoppingCart from "@/components/ShoppingCart";
 
 export const metadata: Metadata = {
   title: "Booky",
@@ -33,6 +34,7 @@ export default function RootLayout({
         <html lang="en">
           <body className="h-screen">
             <Navbar />
+            <ShoppingCart />
             {children}
           </body>
         </html>
